@@ -50,8 +50,8 @@ RUN set -ex; \
 
 COPY --from=builder /home/tron/tron/build/libs/FullNode.jar /home/tron/tron/build/libs/SolidityNode.jar /opt/
 
+RUN curl -o /opt/config.conf -L https://raw.githubusercontent.com/tronprotocol/TronDeployment/master/main_net_config.conf
+
 RUN useradd -m -u 1000 -s /bin/bash tron
 USER tron
 WORKDIR /opt
-
-RUN curl -o /opt/config.conf -L https://raw.githubusercontent.com/tronprotocol/TronDeployment/master/main_net_config.conf
