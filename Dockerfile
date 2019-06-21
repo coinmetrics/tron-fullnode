@@ -4,14 +4,11 @@ RUN set -ex; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		curl \
-		software-properties-common \
 		patch \
-	; \
-	apt-add-repository ppa:webupd8team/java; \
-	apt-get update; \
-	echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections; \
-	apt-get install -y --no-install-recommends \
-		oracle-java8-installer \
+		openjdk-8-jdk-headless \
+		openjfx=8u161-b12-1ubuntu2 \
+		libopenjfx-java=8u161-b12-1ubuntu2 \
+		libopenjfx-jni=8u161-b12-1ubuntu2 \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
@@ -37,14 +34,11 @@ RUN set -ex; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		curl \
-		software-properties-common \
 		patch \
-	; \
-	apt-add-repository ppa:webupd8team/java; \
-	apt-get update; \
-	echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections; \
-	apt-get install -y --no-install-recommends \
-		oracle-java8-installer \
+		openjdk-8-jre-headless \
+		openjfx=8u161-b12-1ubuntu2 \
+		libopenjfx-java=8u161-b12-1ubuntu2 \
+		libopenjfx-jni=8u161-b12-1ubuntu2 \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
