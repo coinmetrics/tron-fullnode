@@ -19,7 +19,7 @@ ARG VERSION
 
 RUN set -ex; \
 	mkdir /home/tron/tron; \
-	curl -L https://github.com/tronprotocol/java-tron/archive/Odyssey-v${VERSION}.tar.gz | tar -xz --strip-components=1 -C /home/tron/tron
+	curl -L https://github.com/tronprotocol/java-tron/archive/GreatVoyage-v${VERSION}.tar.gz | tar -xz --strip-components=1 -C /home/tron/tron
 
 WORKDIR /home/tron/tron
 
