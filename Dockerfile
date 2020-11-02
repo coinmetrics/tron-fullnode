@@ -21,11 +21,9 @@ RUN set -ex; \
 	mkdir /home/tron/tron; \
 	curl -L https://github.com/tronprotocol/java-tron/archive/GreatVoyage-v${VERSION}.tar.gz | tar -xz --strip-components=1 -C /home/tron/tron
 
-WORKDIR /home/tron/tron
-
 RUN set -ex; \
-	./gradlew build -x test; \
-	cp build/libs/FullNode.jar build/libs/SolidityNode.jar ./
+	cd /home/tron/tron; \
+	./gradlew build -x test
 
 
 FROM ubuntu:18.04
@@ -42,7 +40,7 @@ RUN set -ex; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /home/tron/tron/build/libs/FullNode.jar /home/tron/tron/build/libs/SolidityNode.jar /opt/
+COPY --from=builder /home/tron/tron/build/libs/FullNode.jar /opt/
 
 RUN curl -o /opt/config.conf -L https://raw.githubusercontent.com/tronprotocol/TronDeployment/master/main_net_config.conf
 
