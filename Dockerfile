@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as builder
+FROM ubuntu:20.04 as builder
 
 RUN set -ex; \
 	apt-get update; \
@@ -6,9 +6,6 @@ RUN set -ex; \
 		curl \
 		patch \
 		openjdk-8-jdk-headless \
-		openjfx=8u161-b12-1ubuntu2 \
-		libopenjfx-java=8u161-b12-1ubuntu2 \
-		libopenjfx-jni=8u161-b12-1ubuntu2 \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
@@ -26,7 +23,7 @@ RUN set -ex; \
 	./gradlew build -x test
 
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 RUN set -ex; \
 	apt-get update; \
@@ -34,9 +31,6 @@ RUN set -ex; \
 		curl \
 		patch \
 		openjdk-8-jre-headless \
-		openjfx=8u161-b12-1ubuntu2 \
-		libopenjfx-java=8u161-b12-1ubuntu2 \
-		libopenjfx-jni=8u161-b12-1ubuntu2 \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
