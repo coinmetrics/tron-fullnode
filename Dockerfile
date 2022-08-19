@@ -3,6 +3,7 @@ FROM ubuntu:20.04 as builder
 RUN set -ex; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
+		git \
 		curl \
 		patch \
 		openjdk-8-jdk-headless \
@@ -15,8 +16,7 @@ USER tron
 ARG VERSION
 
 RUN set -ex; \
-	mkdir /home/tron/tron; \
-	curl -L https://github.com/tronprotocol/java-tron/archive/GreatVoyage-v${VERSION}.tar.gz | tar -xz --strip-components=1 -C /home/tron/tron
+    git clone --depth 1 -b GreatVoyage-v${VERSION} https://github.com/tronprotocol/java-tron.git /home/tron/tron
 
 RUN set -ex; \
 	cd /home/tron/tron; \
